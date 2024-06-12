@@ -10,6 +10,8 @@ From the `dist` folder download the relevant installation file based on your ope
 
 ## Usage
 
+Download LinkedIn Scraper from the [releases](https://drive.google.com/drive/u/0/folders/1BQKVG6f5Eh-51d-mIChfpTBFl5t9THqe)
+
 [![Watch the video](resources/icon.png)](https://www.loom.com/share/38e1efba134f4b7c9da82c36313bd469)
 
 
