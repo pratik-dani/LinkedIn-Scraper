@@ -10,7 +10,7 @@ From the `dist` folder download the relevant installation file based on your ope
 
 ## Usage
 
-[![Watch the video](resources/icon.png)](https://youtu.be/spJ0vas1TQE)
+[![Watch the video](resources/icon.png)](https://www.loom.com/share/38e1efba134f4b7c9da82c36313bd469)
 
 
 ## Disclaimer
