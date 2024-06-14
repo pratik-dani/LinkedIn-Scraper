@@ -2,7 +2,7 @@
 
 No "official" API access required - just use a valid Linkedin account/session cookies!
 
-:octagonal_sign: **Caution**: This library is not officially supported by LinkedIn. Using it might violate LinkedIn's Terms of Service. Use it at your own risk.
+**Caution**: This library is not officially supported by LinkedIn. Using it might violate LinkedIn's Terms of Service. Use it at your own risk.
 
 # :construction: Under Active Development
 

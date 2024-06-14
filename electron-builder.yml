@@ -1,0 +1,12 @@
+appId: com.example.linkedin.scraper
+productName: LinkedIn Scraper
+copyright: Copyright © 2024 Pratik Dani
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+publish: null

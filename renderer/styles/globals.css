@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.github-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #24292e;
+  border: 1px solid rgba(27, 31, 35, 0.2);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.github-button:hover {
+  background-color: #444d56;
+}
+
+/* @layer base {
+  body {
+    @apply bg-gray-900 text-white;
+  }
+}
+
+@layer components {
+  .btn-blue {
+    @apply text-white font-bold px-4 py-2 rounded bg-blue-600 hover:bg-blue-500;
+  }
+} */
