@@ -12,12 +12,11 @@ From the `dist` folder download the relevant installation file based on your ope
 
 ## Usage
 
-Download LinkedIn Scraper from the [releases](https://drive.google.com/drive/u/0/folders/1BQKVG6f5Eh-51d-mIChfpTBFl5t9THqe)
+Download LinkedIn Scraper from the [releases](https://github.com/devildani/LinkedIn-Scraper/releases)
 
 Video Tutorial and guide:
-[![Watch the video](resources/thumbnail.png)](https://www.loom.com/share/38e1efba134f4b7c9da82c36313bd469)
+[![Watch the video](resources/thumbnail.png)](https://www.youtube.com/watch?v=oYSHsxLMCI8)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oYSHsxLMCI8?si=jgbFEr12UXq7nTda" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Disclaimer
 
