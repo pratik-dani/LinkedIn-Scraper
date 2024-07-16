@@ -2,7 +2,7 @@
   "private": true,
   "name": "linkedin.scraper",
   "description": "LinkedIn Scraper application",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Pratik Dani <pratik@clientlist.co>",
   "main": "app/background.js",
   "scripts": {

@@ -47,3 +47,6 @@ dist
 
 *.db
 response.json
+
+releases
+app
