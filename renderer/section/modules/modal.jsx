@@ -5,7 +5,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { FormProvider, RHFSelect, RHFTextField } from "../../components/hook-form";
+import {
+  FormProvider,
+  RHFSelect,
+  RHFTextField,
+} from "../../components/hook-form";
 import { Grid, Stack } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useMain } from "../../hooks/useMain";
@@ -23,7 +27,7 @@ const style = {
 
 /**
  * AddNewModal component to display a modal form for adding new tasks.
- * 
+ *
  */
 const AddNewModal = ({
   className,
@@ -35,6 +39,7 @@ const AddNewModal = ({
   taskType,
   defaultValues,
   FormSchema,
+  Input,
 }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -42,10 +47,11 @@ const AddNewModal = ({
 
   /**
    * Function to handle form submission.
-   * 
+   *
    * @param {Object} data - The form data.
    */
   const onSubmit = async (data) => {
+    console.log("data", data);
     data.taskType = taskType;
     setIsSubmit(true);
     await addTask(data);
@@ -96,13 +102,7 @@ const AddNewModal = ({
               </Grid>
               <Grid item xs={12} md={12}>
                 <Stack spacing={1}>
-                  <RHFTextField
-                    type="text"
-                    name="profiles"
-                    label="Profiles"
-                    multiline={true}
-                    rows={6}
-                  />
+                  <Input/>
                 </Stack>
               </Grid>
               <Grid item xs={12} md={12}>

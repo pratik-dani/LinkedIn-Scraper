@@ -114,7 +114,7 @@ const sleep = (ms) => {
  * @param {object} param - An object containing event, data, headers, and taskManager
  * @returns {Promise<void>}
  */
-const GetProfiles = async ({ event, data, headers, taksManager }) => {
+const GetProfiles = async ({ event, data, headers, tasksManager }) => {
   // Split the task input into individual URLs
   var urls = data.taskInput.split("\n");
   // Filter out any empty strings
@@ -146,7 +146,7 @@ const GetProfiles = async ({ event, data, headers, taksManager }) => {
     // Calculate the progress as a percentage
     let progress = ((i + 1) * 100) / urls.length;
     // Update the task progress
-    taksManager.updateTaskProgress(data.taskId, progress);
+    tasksManager.updateTaskProgress(data.taskId, progress);
     // Send a task-progress event
     event.sender.send("task-progress");
     // Pause for 10 seconds

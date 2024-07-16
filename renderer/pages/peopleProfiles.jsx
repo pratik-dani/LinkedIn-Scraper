@@ -7,7 +7,8 @@ import { Container, Typography } from "@mui/material";
 import { useMain } from "../hooks/useMain";
 import ModuleLayout from "../section/modules";
 import AddNewModal from "../section/modules/modal";
-import { defaultValues, FormSchema } from "../section/linkedInProfiles/form";
+import { defaultValues, FormSchema } from "../section/form/peopleProfiles";
+import PeopleInput from "../section/form/peopleProfiles";
 
 LinkedinProfiles.getLayout = function getLayout(page) {
   return <Layout variant="logoOnly">{page}</Layout>;
@@ -36,6 +37,7 @@ export default function LinkedinProfiles() {
               taskType={taskType}
               defaultValues={defaultValues}
               FormSchema={FormSchema}
+              Input={PeopleInput}
             />
             <ModuleLayout taskType={taskType} />
           </Container>

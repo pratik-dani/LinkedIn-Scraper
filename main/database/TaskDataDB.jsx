@@ -76,8 +76,12 @@ class TaskDataDatabaseManager {
    * @returns {Object|null} The task data, or null if not found
    */
   getTaskData(taskId) {
-    const task = this.db.prepare("SELECT * FROM tasksData WHERE taskId = ?").get(taskId);
-    return task;
+    // const task = this.db.prepare("SELECT * FROM tasksData WHERE taskId = ?").get(taskId);
+    const query = this.db.prepare("SELECT * FROM tasksData WHERE taskId = ?");
+    console.log("query: ", query);
+    const tasks = query.all(taskId);
+    console.log("taskId: ", tasks);
+    return tasks;
   }
 
   /**

@@ -10,6 +10,7 @@ import GetProfiles from "./linkedin/peopleProfile";
 import GetCompanyProfiles from "./linkedin/companyProfile";
 import { parse } from "json2csv";
 import uuidv4 from "../renderer/utils/uuidv4";
+import GetPostsData from "./linkedin/posts";
 
 // Determine if the application is running in production mode
 const isProd = process.env.NODE_ENV === "production";
@@ -96,7 +97,7 @@ ipcMain.on("add-task", async (event, data) => {
     taskProgress: 0,
     taskLogs: "",
     taskResult: "",
-    taskInput: data.profiles,
+    // taskInput: data.profiles,
     taskAccount: data.account,
   };
 
@@ -108,6 +109,7 @@ ipcMain.on("add-task", async (event, data) => {
 
   // Execute the appropriate task based on task type
   if (data.taskType === "linkedin.profiles") {
+    taskData.taskInput = data.profiles;
     await GetProfiles({
       event,
       data: taskData,
@@ -115,6 +117,7 @@ ipcMain.on("add-task", async (event, data) => {
       tasksManager,
     });
   } else if (data.taskType === "linkedin.company") {
+    taskData.taskInput = data.profiles;
     await GetCompanyProfiles({
       event,
       data: taskData,
@@ -122,6 +125,17 @@ ipcMain.on("add-task", async (event, data) => {
       tasksManager,
     });
   }
+  else if (data.taskType === "linkedin.posts") {
+    taskData.taskInput = data.postUrl;
+    console.log('label', taskData);
+    GetPostsData({
+      event,
+      data: taskData,
+      headers: JSON.parse(accountData.headers),
+      tasksManager,
+    })
+  }
+
 
   // Reply with the task ID
   event.reply("add-task", { id: taskId });

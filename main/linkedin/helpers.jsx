@@ -7,11 +7,10 @@ const axios = require("axios");
  * @returns {AxiosInstance} The configured Axios instance.
  */
 export const createAxiosClient = (headers, jar) => {
-  const client = wrapper(axios.create({
+  const client = axios.create({
     headers,
     jar,
     withCredentials: true,
-  }));
+  });
   return client;
 };
-

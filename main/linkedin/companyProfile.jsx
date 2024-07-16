@@ -2,7 +2,8 @@
 const { CookieJar } = require("tough-cookie");
 const { getUserAgent } = require("./userAgents");
 const { createAxiosClient } = require("./helpers");
-const TaskDataDatabaseManager = require("../database/TaskDataDB");
+import TaskDataDatabaseManager from "../database/TaskDataDB";
+// const TaskDataDatabaseManager = require("../database/TaskDataDB");
 const { app } = require("electron");
 const path = require("path");
 
@@ -126,10 +127,10 @@ const sleep = (ms) => {
 
 /**
  * Main function to get company profiles
- * @param {Object} param - An object containing event, data, headers, and taksManager
+ * @param {Object} param - An object containing event, data, headers, and tasksManager
  * @returns {Promise<void>}
  */
-const GetCompanyProfiles = async ({ event, data, headers, taksManager }) => {
+const GetCompanyProfiles = async ({ event, data, headers, tasksManager }) => {
   // Split the task input into individual URLs
   var urls = data.taskInput.split("\n");
   // Filter out any empty strings and trim whitespace
@@ -155,7 +156,7 @@ const GetCompanyProfiles = async ({ event, data, headers, taksManager }) => {
     // Calculate the progress as a percentage
     let progress = ((i + 1) * 100) / urls.length;
     // Update the task progress
-    taksManager.updateTaskProgress(data.taskId, progress);
+    tasksManager.updateTaskProgress(data.taskId, progress);
     // Send a task-progress event
     event.sender.send("task-progress");
     // Pause for 10 seconds

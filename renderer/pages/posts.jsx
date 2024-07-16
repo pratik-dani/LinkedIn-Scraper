@@ -7,26 +7,26 @@ import { Container, Typography } from "@mui/material";
 import { useMain } from "../hooks/useMain";
 import ModuleLayout from "../section/modules";
 import AddNewModal from "../section/modules/modal";
-import { defaultValues, FormSchema } from "../section/form/companyProfiles";
-import CompanyInput from "../section/form/companyProfiles";
+import { defaultValues, FormSchema } from "../section/form/posts";
+import PostsInput from "../section/form/posts";
 
-LinkedinProfiles.getLayout = function getLayout(page) {
+LinkedinPosts.getLayout = function getLayout(page) {
   return <Layout variant="logoOnly">{page}</Layout>;
 };
 
-export default function LinkedinProfiles() {
+export default function LinkedinPosts() {
   const theme = useTheme();
   const [isSubmit, setIsSubmit] = useState(false);
   const [open, setOpen] = useState(false);
   const { accounts } = useMain();
-  const taskType = "linkedin.company";
+  const taskType = "linkedin.posts";
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Page title="LinkedIn Company Profiles" className="mt-16">
+        <Page title="LinkedIn Posts" className="mt-16">
           <Container>
-          <Typography variant="h3" className="flex justify-center">Scrape Company Profiles</Typography>
+          <Typography variant="h3" className="flex justify-center">Scrape Posts</Typography>
             <AddNewModal
               className="mb-4"
               accounts={accounts}
@@ -37,7 +37,7 @@ export default function LinkedinProfiles() {
               taskType={taskType}
               defaultValues={defaultValues}
               FormSchema={FormSchema}
-              Input={CompanyInput}
+              Input={PostsInput}
             />
             <ModuleLayout taskType={taskType} />
           </Container>

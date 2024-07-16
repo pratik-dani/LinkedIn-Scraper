@@ -42,3 +42,8 @@ _static
 
 .next
 .DS_Store
+
+dist
+
+*.db
+response.json

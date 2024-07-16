@@ -7,6 +7,7 @@ import {
   UserIcon,
   UserGroupIcon,
   BuildingLibraryIcon,
+  PaperClipIcon,
 } from "@heroicons/react/24/outline";
 
 const products = [
@@ -28,12 +29,12 @@ const products = [
     href: "/companyProfiles",
     icon: BuildingLibraryIcon,
   },
-  //   {
-  //     name: "Security",
-  //     description: "Your customers’ data will be safe and secure",
-  //     href: "#",
-  //     icon: FingerPrintIcon,
-  //   },
+    {
+      name: "Posts",
+      description: "Extract valuable engagement data from LinkedIn company page posts",
+      href: "/posts",
+      icon: PaperClipIcon,
+    },
   //   {
   //     name: "Plugins",
   //     description: "Additional Plugins (Coming Soon)",
