@@ -42,6 +42,9 @@ Download LinkedIn Scraper from the [releases](https://github.com/devildani/Linke
 Video Tutorial and guide:
 [![Watch the video](resources/thumbnail.png)](https://www.youtube.com/watch?v=oYSHsxLMCI8)
 
+## Join Discord Community
+
+[Open Source LinkedIn Scraper Discord](https://discord.gg/WFCgGwQH)
 
 ## Disclaimer
 
