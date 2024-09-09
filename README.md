@@ -46,6 +46,8 @@ Video Tutorial and guide:
 
 [Open Source LinkedIn Scraper Discord](https://discord.gg/WFCgGwQH)
 
+<a href="https://www.buymeacoffee.com/pratikdani" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 ## Disclaimer
 
 This library is not endorsed or supported by LinkedIn. It is an unofficial library intended for educational purposes and personal use only. By using this library, you agree to not hold the author or contributors responsible for any consequences resulting from its usage.
