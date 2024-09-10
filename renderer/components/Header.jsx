@@ -39,9 +39,9 @@ const products = [
   //     icon: FingerPrintIcon,
   //   },
   {
-    name: "Plugins",
-    description: "Additional Plugins (Coming Soon)",
-    href: "#",
+    name: "Sales Navigator",
+    description: "Sales Navigator",
+    href: "/salesNavigator",
     icon: SquaresPlusIcon,
   },
 ];

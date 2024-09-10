@@ -11,6 +11,7 @@ import GetCompanyProfiles from "./linkedin/companyProfile";
 import { parse } from "json2csv";
 import uuidv4 from "../renderer/utils/uuidv4";
 import GetPostsData from "./linkedin/posts";
+import GetSalesNavigatorData from "./linkedin/salesNavigator";
 
 // Determine if the application is running in production mode
 const isProd = process.env.NODE_ENV === "production";
@@ -129,6 +130,16 @@ ipcMain.on("add-task", async (event, data) => {
     taskData.taskInput = data.postUrl;
     console.log('label', taskData);
     GetPostsData({
+      event,
+      data: taskData,
+      headers: JSON.parse(accountData.headers),
+      tasksManager,
+    })
+  }
+  else if (data.taskType === "linkedin.salesnavigator") {
+    taskData.taskInput = data.postUrl;
+    console.log('label', taskData);
+    GetSalesNavigatorData({
       event,
       data: taskData,
       headers: JSON.parse(accountData.headers),
