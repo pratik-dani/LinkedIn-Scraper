@@ -3,12 +3,25 @@ const { CookieJar } = require("tough-cookie");
 const { getUserAgent } = require("./userAgents");
 import { createAxiosClient } from "./helpers";
 import TaskDataDatabaseManager from "../database/TaskDataDB";
+import AccountsDatabaseManager from "../database/AccountsDB";
 import { app } from "electron";
 import path from "path";
 
 // Checking if the environment is production
 const isProd = process.env.NODE_ENV === "production";
 let taskDataDb;
+let accountsManager;
+
+if (isProd) {
+  let path_ = app.getPath("documents");
+  console.log(path_);
+  let db_path = path.join(path_, "database.db");
+  taskDataDb = new TaskDataDatabaseManager(db_path);
+  accountsManager = new AccountsDatabaseManager(db_path);
+} else {
+  taskDataDb = new TaskDataDatabaseManager("database.db");
+  accountsManager = new AccountsDatabaseManager("database.db");
+}
 
 /**
  * Function to extract LinkedIn username from a given URL
@@ -88,14 +101,6 @@ const getProfileData = async (liUrl, initialClient, data) => {
  * @param {object} data - The extracted profile data
  */
 const saveData2Db = (data) => {
-  if (isProd) {
-    const path_ = app.getPath("documents");
-    console.log(path_);
-    const db_path = path.join(path_, "database.db");
-    taskDataDb = new TaskDataDatabaseManager(db_path);
-  } else {
-    taskDataDb = new TaskDataDatabaseManager("database.db");
-  }
   taskDataDb.insertTaskData({ taskId: data.taskId, taskData: data });
   taskDataDb.close();
 };
@@ -124,6 +129,7 @@ const GetProfiles = async ({ event, data, headers, tasksManager }) => {
 
   // Loop over each URL
   for (let i = 0; i < urls.length; i++) {
+    var cookiesExpired = false;
     // Get the current URL
     const url = urls[i];
     // Get a user agent string
@@ -141,8 +147,27 @@ const GetProfiles = async ({ event, data, headers, tasksManager }) => {
       saveData2Db(profileResponse);
     } catch (error) {
       // If an error occurs, save the error message to the database
+      if (error.message==='Maximum number of redirects exceeded'){
+        error.message = 'Session expired. Update your session cookies and try again.';
+        cookiesExpired = true;
+      }
       saveData2Db({ input: url, taskId: data.taskId, error: error.message });
     }
+
+    // Check if the cookies have expired
+    if (cookiesExpired){
+      // If the cookies have expired, set the progress to 100%
+      let progress = 100;
+      // Update the task progress
+      tasksManager.updateTaskProgress(data.taskId, progress);
+      // Update the account status to 0 (expired)
+      accountsManager.updateAccountStatus(data.taskAccount, 0);
+      // Send a task-progress event
+      event.sender.send("task-progress");
+      // Break out of the loop
+      break;
+    }
+
     // Calculate the progress as a percentage
     let progress = ((i + 1) * 100) / urls.length;
     // Update the task progress

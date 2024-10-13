@@ -187,6 +187,7 @@ ipcMain.on("get-accounts", async (event, data) => {
       d.cookie = e.cookie;
       d.name = `${JSON.parse(e.accountData).miniProfile.firstName} ${JSON.parse(e.accountData).miniProfile.lastName}`;
       d.id = e.id;
+      d.status = e.status;
       return d;
     });
     event.reply("accounts", { data: updatedResp });

@@ -92,6 +92,18 @@ class DatabaseManager {
   }
 
   /**
+   * Method to update the status of an account in the 'accounts' table
+   * @param {number} id - The id of the account to be updated
+   * @param {string} status - The new status of the account
+   * @returns {number} The number of rows updated
+   */
+  updateAccountStatus(id, status) {
+    const updateStmt = this.db.prepare("UPDATE accounts SET status = ? WHERE id = ?");
+    const info = updateStmt.run(status, id);
+    return info.changes;
+  }
+
+  /**
    * Method to close the database connection
    */
   close() {

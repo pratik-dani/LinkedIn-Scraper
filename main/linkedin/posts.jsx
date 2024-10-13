@@ -3,6 +3,7 @@ const { CookieJar } = require("tough-cookie");
 const { getUserAgent } = require("./userAgents");
 const { createAxiosClient } = require("./helpers");
 import TaskDataDatabaseManager from "../database/TaskDataDB";
+import AccountsDatabaseManager from "../database/AccountsDB";
 // const TaskDataDatabaseManager = require("../database/TaskDataDB");
 const { app } = require("electron");
 const path = require("path");
@@ -11,7 +12,17 @@ const { parse } = require("url");
 // Checking if the environment is production
 const isProd = process.env.NODE_ENV === "production";
 let taskDataDb;
-
+let accountsManager;
+if (isProd) {
+  let path_ = app.getPath("documents");
+  console.log(path_);
+  let db_path = path.join(path_, "database.db");
+  taskDataDb = new TaskDataDatabaseManager(db_path);
+  accountsManager = new AccountsDatabaseManager(db_path);
+} else {
+  taskDataDb = new TaskDataDatabaseManager("database.db");
+  accountsManager = new AccountsDatabaseManager("database.db");
+}
 const getActivityUrn = (url) => {
   const link = parse(url);
   const activityId = link.pathname.split("/").pop().split(":").slice(-1)[0];
@@ -124,7 +135,18 @@ const GetPostsData = async ({ event, data, headers, tasksManager }) => {
     saveData2Db(postResponse, data.taskId);
   } catch (error) {
     // If an error occurs, save the error message to the database
-    saveData2Db({ input: url, taskId: data.taskId, error: error.message }, data.taskId);
+    if (error.message === "Maximum number of redirects exceeded") {
+      error.message =
+        "Session expired. Update your session cookies and try again.";
+      cookiesExpired = true;
+    }
+    saveData2Db({ input: url, taskId: data.taskId, error: error.message });
+  }
+
+  // Check if the cookies have expired
+  if (cookiesExpired) {
+    // Update the account status to 0 (expired)
+    accountsManager.updateAccountStatus(data.taskAccount, 0);
   }
   tasksManager.updateTaskProgress(data.taskId, 100);
   // Send a task-progress event

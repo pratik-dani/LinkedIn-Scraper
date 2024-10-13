@@ -102,7 +102,7 @@ const AddNewModal = ({
               </Grid>
               <Grid item xs={12} md={12}>
                 <Stack spacing={1}>
-                  <Input/>
+                  <Input />
                 </Stack>
               </Grid>
               <Grid item xs={12} md={12}>
@@ -110,7 +110,11 @@ const AddNewModal = ({
                   <RHFSelect name="account">
                     <option value="" />
                     {accounts.map((elem) => (
-                      <option key={elem.id} value={elem.id}>
+                      <option
+                        key={elem.id}
+                        value={elem.id}
+                        disabled={elem.status}
+                      >
                         {elem.name}
                       </option>
                     ))}
