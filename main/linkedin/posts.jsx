@@ -11,18 +11,19 @@ const { parse } = require("url");
 
 // Checking if the environment is production
 const isProd = process.env.NODE_ENV === "production";
+const ACCOUNT_STATUS_EXPIRED = 0;
 let taskDataDb;
 let accountsManager;
 if (isProd) {
   let path_ = app.getPath("documents");
   console.log(path_);
-  let db_path = path.join(path_, "database.db");
-  taskDataDb = new TaskDataDatabaseManager(db_path);
-  accountsManager = new AccountsDatabaseManager(db_path);
+  db_path = path.join(path_, "database.db");
 } else {
-  taskDataDb = new TaskDataDatabaseManager("database.db");
-  accountsManager = new AccountsDatabaseManager("database.db");
+  db_path = "database.db";
 }
+taskDataDb = new TaskDataDatabaseManager(db_path);
+accountsManager = new AccountsDatabaseManager(db_path);
+
 const getActivityUrn = (url) => {
   const link = parse(url);
   const activityId = link.pathname.split("/").pop().split(":").slice(-1)[0];
@@ -111,6 +112,7 @@ const saveData2Db = (data, taskId) => {
 };
 
 const GetPostsData = async ({ event, data, headers, tasksManager }) => {
+  let cookiesExpired = false;
   var postUrl = data.taskInput;
   const activityUrn = getActivityUrn(postUrl);
 
@@ -140,13 +142,13 @@ const GetPostsData = async ({ event, data, headers, tasksManager }) => {
         "Session expired. Update your session cookies and try again.";
       cookiesExpired = true;
     }
-    saveData2Db({ input: url, taskId: data.taskId, error: error.message });
+    saveData2Db([{ input: url, taskId: data.taskId, error: error.message }], data.taskId);
   }
 
   // Check if the cookies have expired
   if (cookiesExpired) {
     // Update the account status to 0 (expired)
-    accountsManager.updateAccountStatus(data.taskAccount, 0);
+    accountsManager.updateAccountStatus(data.taskAccount, ACCOUNT_STATUS_EXPIRED);
   }
   tasksManager.updateTaskProgress(data.taskId, 100);
   // Send a task-progress event

@@ -113,7 +113,7 @@ const AddNewModal = ({
                       <option
                         key={elem.id}
                         value={elem.id}
-                        disabled={elem.status}
+                        disabled={!elem.status}
                       >
                         {elem.name}
                       </option>

@@ -9,19 +9,19 @@ import path from "path";
 
 // Checking if the environment is production
 const isProd = process.env.NODE_ENV === "production";
+const ACCOUNT_STATUS_EXPIRED = 0;
 let taskDataDb;
 let accountsManager;
-
 if (isProd) {
   let path_ = app.getPath("documents");
   console.log(path_);
-  let db_path = path.join(path_, "database.db");
-  taskDataDb = new TaskDataDatabaseManager(db_path);
-  accountsManager = new AccountsDatabaseManager(db_path);
+  db_path = path.join(path_, "database.db");
 } else {
-  taskDataDb = new TaskDataDatabaseManager("database.db");
-  accountsManager = new AccountsDatabaseManager("database.db");
+  db_path = "database.db";
 }
+taskDataDb = new TaskDataDatabaseManager(db_path);
+accountsManager = new AccountsDatabaseManager(db_path);
+
 
 /**
  * Function to extract LinkedIn username from a given URL
@@ -129,7 +129,6 @@ const GetProfiles = async ({ event, data, headers, tasksManager }) => {
 
   // Loop over each URL
   for (let i = 0; i < urls.length; i++) {
-    var cookiesExpired = false;
     // Get the current URL
     const url = urls[i];
     // Get a user agent string
@@ -140,6 +139,7 @@ const GetProfiles = async ({ event, data, headers, tasksManager }) => {
     const initialJar = new CookieJar();
     // Create a new Axios client with the headers and cookie jar
     const initialClient = createAxiosClient(headers, initialJar);
+    let cookiesExpired = false;
     try {
       // Get the profile data for the current URL
       const profileResponse = await getProfileData(url, initialClient, data);
@@ -161,7 +161,7 @@ const GetProfiles = async ({ event, data, headers, tasksManager }) => {
       // Update the task progress
       tasksManager.updateTaskProgress(data.taskId, progress);
       // Update the account status to 0 (expired)
-      accountsManager.updateAccountStatus(data.taskAccount, 0);
+      accountsManager.updateAccountStatus(data.taskAccount, ACCOUNT_STATUS_EXPIRED);
       // Send a task-progress event
       event.sender.send("task-progress");
       // Break out of the loop

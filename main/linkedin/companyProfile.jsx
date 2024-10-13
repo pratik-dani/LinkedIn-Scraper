@@ -9,18 +9,18 @@ const path = require("path");
 
 // Checking if the environment is production
 const isProd = process.env.NODE_ENV === "production";
+const ACCOUNT_STATUS_EXPIRED = 0;
 let taskDataDb;
 let accountsManager;
 if (isProd) {
   let path_ = app.getPath("documents");
   console.log(path_);
-  let db_path = path.join(path_, "database.db");
-  taskDataDb = new TaskDataDatabaseManager(db_path);
-  accountsManager = new AccountsDatabaseManager(db_path);
+  db_path = path.join(path_, "database.db");
 } else {
-  taskDataDb = new TaskDataDatabaseManager("database.db");
-  accountsManager = new AccountsDatabaseManager("database.db");
+  db_path = "database.db";
 }
+taskDataDb = new TaskDataDatabaseManager(db_path);
+accountsManager = new AccountsDatabaseManager(db_path);
 
 
 /**
@@ -139,7 +139,7 @@ const GetCompanyProfiles = async ({ event, data, headers, tasksManager }) => {
   var urls = data.taskInput.split("\n");
   // Filter out any empty strings and trim whitespace
   urls = urls.filter((url) => url !== "").map((url) => url.trim());
-
+  let progress;
   // Loop over each URL
   for (let i = 0; i < urls.length; i++) {
     console.log("url", urls[i]);
@@ -148,6 +148,7 @@ const GetCompanyProfiles = async ({ event, data, headers, tasksManager }) => {
     headers["User-Agent"] = userAgent;
     const initialJar = new CookieJar();
     const initialClient = createAxiosClient(headers, initialJar);
+    let cookiesExpired = false;
     try {
       // Get the profile data for the current URL
       const profileResponse = await getProfileData(url, initialClient, data);
@@ -165,11 +166,11 @@ const GetCompanyProfiles = async ({ event, data, headers, tasksManager }) => {
     // Check if the cookies have expired
     if (cookiesExpired){
       // If the cookies have expired, set the progress to 100%
-      let progress = 100;
+      progress = 100;
       // Update the task progress
       tasksManager.updateTaskProgress(data.taskId, progress);
       // Update the account status to 0 (expired)
-      accountsManager.updateAccountStatus(data.taskAccount, 0);
+      accountsManager.updateAccountStatus(data.taskAccount, ACCOUNT_STATUS_EXPIRED);
       // Send a task-progress event
       event.sender.send("task-progress");
       // Break out of the loop
@@ -177,7 +178,7 @@ const GetCompanyProfiles = async ({ event, data, headers, tasksManager }) => {
     }
 
     // Calculate the progress as a percentage
-    let progress = ((i + 1) * 100) / urls.length;
+    progress = ((i + 1) * 100) / urls.length;
     // Update the task progress
     tasksManager.updateTaskProgress(data.taskId, progress);
     // Send a task-progress event
