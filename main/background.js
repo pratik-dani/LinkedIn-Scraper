@@ -127,7 +127,7 @@ ipcMain.on("add-task", async (event, data) => {
   }
   else if (data.taskType === "linkedin.posts") {
     taskData.taskInput = data.postUrl;
-    console.log('label', taskData);
+    // console.log('label', taskData);
     GetPostsData({
       event,
       data: taskData,

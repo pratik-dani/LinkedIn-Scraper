@@ -14,6 +14,7 @@ const isProd = process.env.NODE_ENV === "production";
 const ACCOUNT_STATUS_EXPIRED = 0;
 let taskDataDb;
 let accountsManager;
+let db_path;
 if (isProd) {
   let path_ = app.getPath("documents");
   console.log(path_);
@@ -97,14 +98,6 @@ const getPostData = async (url, initialClient, data, params) => {
 };
 
 const saveData2Db = (data, taskId) => {
-  if (isProd) {
-    const path_ = app.getPath("documents");
-    console.log(path_);
-    const db_path = path.join(path_, "database.db");
-    taskDataDb = new TaskDataDatabaseManager(db_path);
-  } else {
-    taskDataDb = new TaskDataDatabaseManager("database.db");
-  }
   data.forEach((d) => {
     taskDataDb.insertTaskData({ taskId: taskId, taskData: d });
   });

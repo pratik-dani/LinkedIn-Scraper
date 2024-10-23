@@ -12,9 +12,10 @@ const isProd = process.env.NODE_ENV === "production";
 const ACCOUNT_STATUS_EXPIRED = 0;
 let taskDataDb;
 let accountsManager;
+let db_path;
 if (isProd) {
   let path_ = app.getPath("documents");
-  console.log(path_);
+  // console.log(path_);
   db_path = path.join(path_, "database.db");
 } else {
   db_path = "database.db";
@@ -52,10 +53,13 @@ const getProfileData = async (liUrl, initialClient, data) => {
     publicIdentifier,
     entityUrn,
     profilePositionGroups,
+    profileEducations,
     location,
     industry,
+    backgroundPicture,
   } = profileResponse.data.elements[0];
 
+  
   const extractedData = {
     input: liUrl,
     taskId: data.taskId,
@@ -72,7 +76,18 @@ const getProfileData = async (liUrl, initialClient, data) => {
     country: geoLocation?.geo?.country?.defaultLocalizedName || "",
     locationName: geoLocation?.geo?.defaultLocalizedName || "",
     industry: industry?.name || "",
+    avatarUrl: `${backgroundPicture?.displayImageReference?.vectorImage?.rootUrl || ""}${backgroundPicture?.displayImageReference?.vectorImage?.artifacts[0]?.fileIdentifyingUrlPathSegment || ""}`
   };
+
+  profileEducations.elements.slice(0, 1).map((element) => {
+    extractedData.education = element.description || "";
+    extractedData.school = element.school?.name || "";
+    extractedData.degree = element.degreeName || "";
+    extractedData.fieldOfStudy = element.fieldOfStudy || "";
+    extractedData.activities = element.activities || "";
+    extractedData.schoolLinkedInId = element.schoolUrn?.split(":").at(-1) || "";
+    extractedData.schoolLinkedInUrl = element.school?.url || "";
+  });
 
   profilePositionGroups.elements.slice(0, 1).map((element) => {
     element.profilePositionInPositionGroup.elements

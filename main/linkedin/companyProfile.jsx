@@ -12,6 +12,7 @@ const isProd = process.env.NODE_ENV === "production";
 const ACCOUNT_STATUS_EXPIRED = 0;
 let taskDataDb;
 let accountsManager;
+let db_path;
 if (isProd) {
   let path_ = app.getPath("documents");
   console.log(path_);
@@ -142,7 +143,7 @@ const GetCompanyProfiles = async ({ event, data, headers, tasksManager }) => {
   let progress;
   // Loop over each URL
   for (let i = 0; i < urls.length; i++) {
-    console.log("url", urls[i]);
+    // console.log("url", urls[i]);
     const url = urls[i];
     const userAgent = getUserAgent();
     headers["User-Agent"] = userAgent;

@@ -51,7 +51,7 @@ const AddNewModal = ({
    * @param {Object} data - The form data.
    */
   const onSubmit = async (data) => {
-    console.log("data", data);
+    // console.log("data", data);
     data.taskType = taskType;
     setIsSubmit(true);
     await addTask(data);
