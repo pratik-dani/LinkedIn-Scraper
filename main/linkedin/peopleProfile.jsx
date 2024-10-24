@@ -117,7 +117,6 @@ const getProfileData = async (liUrl, initialClient, data) => {
  */
 const saveData2Db = (data) => {
   taskDataDb.insertTaskData({ taskId: data.taskId, taskData: data });
-  taskDataDb.close();
 };
 
 /**
@@ -192,6 +191,8 @@ const GetProfiles = async ({ event, data, headers, tasksManager }) => {
     // Pause for 10 seconds
     await sleep(10000);
   }
+  // taskDataDb.close();
+  // accountsManager.close();
 };
 
 // Export the GetProfiles function as the default export

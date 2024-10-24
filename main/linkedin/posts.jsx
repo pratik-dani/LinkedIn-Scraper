@@ -101,7 +101,6 @@ const saveData2Db = (data, taskId) => {
   data.forEach((d) => {
     taskDataDb.insertTaskData({ taskId: taskId, taskData: d });
   });
-  taskDataDb.close();
 };
 
 const GetPostsData = async ({ event, data, headers, tasksManager }) => {
@@ -146,5 +145,7 @@ const GetPostsData = async ({ event, data, headers, tasksManager }) => {
   tasksManager.updateTaskProgress(data.taskId, 100);
   // Send a task-progress event
   event.sender.send("task-progress");
+  taskDataDb.close();
+  accountsManager.close();
 };
 export default GetPostsData;
