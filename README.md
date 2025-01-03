@@ -1,8 +1,17 @@
 # Open Source LinkedIn Scraper
 
-No "official" API access required - just use a valid Linkedin account/session cookies!
+[![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=ffffff)](https://discord.gg/hdd48NEB37)
 
-**Caution**: This library is not officially supported by LinkedIn. Using it might violate LinkedIn's Terms of Service. Use it at your own risk.
+## Features
+
+- ✅ No official API access required. Just use a valid LinkedIn user account.
+- ✅ Direct HTTP API interface. No Selenium, Pupeteer, or other browser-based scraping methods.
+- ✅ Get people, companies, jobs, posts
+- ✅ Export LinkedIn people searches
+- ✅ Extract likes and comments data from the URL of any given post
+
+> [!IMPORTANT]
+> This library is not officially supported by LinkedIn. Using it might violate LinkedIn's Terms of Service. Use it at your own risk.
 
 # :construction: Under Active Development
 
@@ -21,7 +30,7 @@ $ npm run build:mac
 $ npm run build:mac:universal
 
 # For windows32
-$ npm run build::win32
+$ npm run build:win32
 
 # For windows64
 $ npm run build:win64
@@ -44,9 +53,7 @@ Video Tutorial and guide:
 
 ## Join Discord Community
 
-[Open Source LinkedIn Scraper Discord](https://discord.gg/xJ272pHSt3)
-
-<a href="https://www.buymeacoffee.com/pratikdani" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+[![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=ffffff)](https://discord.gg/hdd48NEB37)
 
 ## Disclaimer
 
