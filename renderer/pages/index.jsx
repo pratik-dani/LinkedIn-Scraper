@@ -8,6 +8,7 @@ import {
   UserGroupIcon,
   BuildingLibraryIcon,
   PaperClipIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 
 const products = [
@@ -29,13 +30,19 @@ const products = [
     href: "/companyProfiles",
     icon: BuildingLibraryIcon,
   },
-    {
-      name: "Posts",
-      description: "Extract valuable engagement data from LinkedIn company page posts",
-      href: "/posts",
-      icon: PaperClipIcon,
-    },
-  //   {
+  {
+    name: "Posts",
+    description: "Extract valuable engagement data from LinkedIn company page posts",
+    href: "/posts",
+    icon: PaperClipIcon,
+  },
+  {
+    name: "LinkedIn People Serarch",
+    description: "Scrape and export the results of a LinkedIn people search into a spreadsheet",
+    href: "/peopleSearch",
+    icon: MagnifyingGlassIcon,
+  },
+//   {
   //     name: "Plugins",
   //     description: "Additional Plugins (Coming Soon)",
   //     href: "#",

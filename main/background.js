@@ -8,6 +8,7 @@ import TasksDatabaseManager from "./database/TasksDB";
 import TaskDataDatabaseManager from "./database/TaskDataDB";
 import GetProfiles from "./linkedin/peopleProfile";
 import GetCompanyProfiles from "./linkedin/companyProfile";
+import LinkedInSearchParser from "./linkedin/peopleSearch";
 import { parse } from "json2csv";
 import uuidv4 from "../renderer/utils/uuidv4";
 import GetPostsData from "./linkedin/posts";
@@ -99,6 +100,7 @@ ipcMain.on("add-task", async (event, data) => {
     taskResult: "",
     // taskInput: data.profiles,
     taskAccount: data.account,
+    ...data
   };
 
   // Insert task into the database
@@ -129,6 +131,16 @@ ipcMain.on("add-task", async (event, data) => {
     taskData.taskInput = data.postUrl;
     // console.log('label', taskData);
     GetPostsData({
+      event,
+      data: taskData,
+      headers: JSON.parse(accountData.headers),
+      tasksManager,
+    })
+  }
+
+  else if (data.taskType === "linkedin.people.search") {
+    taskData.taskInput = data.searchUrl;
+    LinkedInSearchParser({
       event,
       data: taskData,
       headers: JSON.parse(accountData.headers),

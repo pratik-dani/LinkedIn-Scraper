@@ -40,6 +40,7 @@ const AddNewModal = ({
   defaultValues,
   FormSchema,
   Input,
+  CountInput,
 }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -51,7 +52,6 @@ const AddNewModal = ({
    * @param {Object} data - The form data.
    */
   const onSubmit = async (data) => {
-    // console.log("data", data);
     data.taskType = taskType;
     setIsSubmit(true);
     await addTask(data);
@@ -105,6 +105,13 @@ const AddNewModal = ({
                   <Input />
                 </Stack>
               </Grid>
+              {CountInput && (
+                <Grid item xs={12} md={12}>
+                  <Stack spacing={1}>
+                    <CountInput />
+                  </Stack>
+                </Grid>
+              )}
               <Grid item xs={12} md={12}>
                 <Stack spacing={1}>
                   <RHFSelect name="account">
