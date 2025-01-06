@@ -1,6 +1,6 @@
 # Open Source LinkedIn Scraper
 
-[![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=ffffff)](https://discord.gg/hdd48NEB37)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=ffffff)](https://discord.gg/xJ272pHSt3)
 
 ## Features
 
@@ -53,7 +53,7 @@ Video Tutorial and guide:
 
 ## Join Discord Community
 
-[![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=ffffff)](https://discord.gg/hdd48NEB37)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?logo=discord&logoColor=ffffff)](https://discord.gg/xJ272pHSt3)
 
 ## Disclaimer
 
