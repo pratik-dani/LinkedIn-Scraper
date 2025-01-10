@@ -13,6 +13,32 @@
 > [!IMPORTANT]
 > This library is not officially supported by LinkedIn. Using it might violate LinkedIn's Terms of Service. Use it at your own risk.
 
+
+## Sponsors
+> This is a sponsored section
+
+<a href="https://nubela.co/proxycurl?utm_campaign=influencer_marketing&utm_source=github&utm_medium=social&utm_content=pratik_dani_linkedin-scraper)">
+<img src="https://raw.githubusercontent.com/pratik-dani/LinkedIn-Scraper/main/docs/assets/Proxycurl_logo.png" alt="Proxycurl APIs enrich people and company profiles with structured data" />
+</a><br><br/>
+
+<h3>
+<a href="https://nubela.co/proxycurl?utm_campaign=influencer_marketing&utm_source=github&utm_medium=social&utm_content=pratik_dani_linkedin-scraper">
+Proxycurl
+</a>
+</h3>
+Scrape public LinkedIn profile data at scale with [Proxycurl APIs](https://nubela.co/proxycurl).
+
+- Scraping Public profiles are battle tested in court in HiQ VS LinkedIn case.
+- GDPR, CCPA, SOC2 compliant
+- High rate limit - 300 requests/minute
+- Fast - APIs respond in ~2s
+- Fresh data - 88% of data is scraped real-time, other 12% are not older than 29 days
+- High accuracy
+- Tons of data points returned per profile
+
+Built for developers, by developers.
+
+
 # :construction: Under Active Development
 
 ## Installation
