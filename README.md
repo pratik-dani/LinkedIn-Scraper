@@ -16,17 +16,17 @@
 
 ## Sponsors
 > This is a sponsored section
-
+<br/>
 <a href="https://nubela.co/proxycurl?utm_campaign=influencer_marketing&utm_source=github&utm_medium=social&utm_content=pratik_dani_linkedin-scraper)">
-<img src="https://raw.githubusercontent.com/pratik-dani/LinkedIn-Scraper/main/docs/assets/Proxycurl_logo.png" alt="Proxycurl APIs enrich people and company profiles with structured data" />
-</a><br><br/>
-
+<img src="https://raw.githubusercontent.com/pratik-dani/LinkedIn-Scraper/main/docs/assets/Proxycurl_logo.png" alt="Proxycurl APIs enrich people and company profiles with structured data" alt="proxycurl" height="100px" width="200"/>
+</a>
 <h3>
 <a href="https://nubela.co/proxycurl?utm_campaign=influencer_marketing&utm_source=github&utm_medium=social&utm_content=pratik_dani_linkedin-scraper">
 Proxycurl
 </a>
 </h3>
-Scrape public LinkedIn profile data at scale with [Proxycurl APIs](https://nubela.co/proxycurl).
+Scrape public LinkedIn profile data at scale with <a href="https://nubela.co/proxycurl?utm_campaign=influencer_marketing&utm_source=github&utm_medium=social&utm_content=pratik_dani_linkedin-scraper">
+Proxycurl APIs</a>.
 
 - Scraping Public profiles are battle tested in court in HiQ VS LinkedIn case.
 - GDPR, CCPA, SOC2 compliant
