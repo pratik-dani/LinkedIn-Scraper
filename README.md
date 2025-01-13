@@ -17,7 +17,7 @@
 ## Sponsors
 > This is a sponsored section
 <br/>
-<a href="https://nubela.co/proxycurl?utm_campaign=influencer_marketing&utm_source=github&utm_medium=social&utm_content=pratik_dani_linkedin-scraper)">
+<a href="https://nubela.co/proxycurl?utm_campaign=influencer_marketing&utm_source=github&utm_medium=social&utm_content=pratik_dani_linkedin-scraper">
 <img src="https://raw.githubusercontent.com/pratik-dani/LinkedIn-Scraper/main/docs/assets/Proxycurl_logo.png" alt="Proxycurl APIs enrich people and company profiles with structured data" alt="proxycurl" height="100px" width="200"/>
 </a>
 <h3>
